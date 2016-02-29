@@ -2,6 +2,7 @@
 
 // run this as:
 // php run_tests.php
+error_reporting(-1);
 
 function printBarrier()
 {
@@ -23,5 +24,8 @@ foreach ($emails as $email) {
     $emailParser = new PlancakeEmailParser(file_get_contents($email));
     printnl("subject: " . $emailParser->getSubject());
     printnl("body: " . $emailParser->getBody());
+    if($att = $emailParser->getAttachments()){
+      printnl("att: " . print_r($att, true));
+    }
     printBarrier();
 }
